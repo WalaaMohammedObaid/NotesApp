@@ -1,0 +1,59 @@
+﻿@model NotesApp.Models.Note
+@{
+    ViewData["Title"] = "حذف الملاحظة";
+}
+
+<style>
+    .delete-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 6px 24px rgba(220,53,69,0.15);
+        padding: 36px;
+        max-width: 500px;
+        margin: 0 auto;
+        border-top: 6px solid #dc3545;
+        text-align: center;
+    }
+
+        .delete-card h3 {
+            color: #dc3545;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+    .note-preview {
+        background: var(--yellow-light);
+        border: 2px solid var(--yellow);
+        border-radius: 12px;
+        padding: 16px;
+        margin: 20px 0;
+        text-align: right;
+    }
+
+        .note-preview h6 {
+            color: var(--purple-dark);
+            font-weight: 700;
+        }
+</style>
+
+<div class="delete-card">
+    <h3>🗑️ حذف الملاحظة</h3>
+    <p class="text-muted">هل أنت متأكد من حذف هذه الملاحظة؟ لا يمكن التراجع عن هذا الإجراء.</p>
+
+    <div class="note-preview">
+        <h6>@Model.Title</h6>
+        <p class="text-muted small mb-0">@Model.Content</p>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <div class="d-flex gap-3 justify-content-center">
+            <button type="submit" class="btn btn-danger" style="border-radius:25px; padding: 9px 25px; font-weight:700;">
+                🗑️ نعم، احذف
+            </button>
+            <a asp-action="Index" class="btn btn-back" style="border:2px solid var(--purple); color:var(--purple); border-radius:25px; padding:9px 20px; font-weight:600; text-decoration:none;">
+                ← إلغاء
+            </a>
+        </div>
+    </form>
+</div>

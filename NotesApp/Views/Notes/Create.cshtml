@@ -1,0 +1,85 @@
+﻿@model NotesApp.Models.Note
+@{
+    ViewData["Title"] = "ملاحظة جديدة";
+}
+
+<style>
+    .form-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 6px 24px rgba(108,63,197,0.15);
+        padding: 36px;
+        max-width: 600px;
+        margin: 0 auto;
+        border-top: 6px solid var(--yellow);
+    }
+
+        .form-card h3 {
+            color: var(--purple-dark);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+    .form-label {
+        color: var(--purple);
+        font-weight: 600;
+    }
+
+    .form-control:focus {
+        border-color: var(--purple);
+        box-shadow: 0 0 0 3px rgba(108,63,197,0.15);
+    }
+
+    .btn-save {
+        background: linear-gradient(135deg, var(--purple), var(--purple-light));
+        color: white;
+        border: none;
+        border-radius: 25px;
+        padding: 10px 30px;
+        font-weight: 700;
+    }
+
+        .btn-save:hover {
+            opacity: 0.9;
+            color: white;
+        }
+
+    .btn-back {
+        color: var(--purple);
+        text-decoration: none;
+        border: 2px solid var(--purple);
+        border-radius: 25px;
+        padding: 9px 20px;
+        font-weight: 600;
+    }
+
+        .btn-back:hover {
+            background: var(--purple);
+            color: white;
+        }
+</style>
+
+<div class="form-card">
+    <h3>📝 ملاحظة جديدة</h3>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" placeholder="أدخل عنوان الملاحظة..." />
+            <span asp-validation-for="Title" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Content" class="form-label"></label>
+            <textarea asp-for="Content" class="form-control" rows="6"
+                      placeholder="اكتب ملاحظتك هنا..."></textarea>
+            <span asp-validation-for="Content" class="text-danger small"></span>
+        </div>
+
+        <div class="d-flex gap-3">
+            <button type="submit" class="btn btn-save">💾 حفظ الملاحظة</button>
+            <a asp-action="Index" class="btn btn-back">← رجوع</a>
+        </div>
+    </form>
+</div>
